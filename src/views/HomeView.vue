@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-
     <NavBar v-on:getLowHighPrice="getLowHighPriceRange($event)"></NavBar>
     <HomePage :lowHighPrice="lowHighPrice"></HomePage>
 
@@ -26,7 +25,7 @@ export default {
     getLowHighPriceRange(price){
       this.lowHighPrice = [...(price.split("-")).map(Number)];
       
-    }
+    },
   }
 }
 </script>

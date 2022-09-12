@@ -18,13 +18,12 @@ export default {
   },
   data(){
     return {
-      lowHighPrice: [],
+      lowHighPrice: [0, 1000],
     }
   },
   methods: {
     getLowHighPriceRange(price){
       this.lowHighPrice = [...(price.split("-")).map(Number)];
-      
     },
   }
 }

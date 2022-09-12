@@ -181,7 +181,7 @@ export default {
         align-items: center;
     }
     .original-product-price span{
-        font-size: 250%;
+        font-size: 230%;
         text-decoration-line: line-through;
         color:darkgrey
     }

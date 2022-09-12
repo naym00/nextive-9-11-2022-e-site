@@ -2,7 +2,7 @@
   <div class="showallproducts">
 
 
-    <div class="flex-container">
+    <div v-if="products.length" class="flex-container">
         <div class="inner-flex-container">
             <!--For Loop-->
 
@@ -12,6 +12,9 @@
 
             <!--For Loop-->
         </div>
+    </div>
+    <div class="notice-massage" v-else>
+      <h1>No Products are Available!</h1>
     </div>
 
 
@@ -59,5 +62,11 @@ export default {
     height: 515px;
     border: 1px solid black;
     border-radius: 20px;
+}
+.notice-massage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
 }
 </style>

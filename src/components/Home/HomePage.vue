@@ -1,7 +1,7 @@
 <template>
   <div class="homepage">
     <GetProductsFromApi v-on:getAllProducts="getProducts($event)"></GetProductsFromApi>
-    <ShowAllProducts :products="products"></ShowAllProducts>
+    <ShowAllProducts :products="copyProducts"></ShowAllProducts>
   </div>
   
 </template>
@@ -19,12 +19,21 @@ export default {
   data() {
     return {
         products: [],
+        copyProducts: [],
     };
   },
   methods: {
     getProducts(allProducts){
-        this.products = [...allProducts];
+        this.products=[...allProducts.filter(product => product.price >= this.lowHighPrice[0] && product.price <= this.lowHighPrice[1])];
+        this.copyProducts = [...this.products];
     }
+  },
+  watch:{
+
+    lowHighPrice: function (){
+      this.copyProducts=[...this.products.filter(product => product.price >= this.lowHighPrice[0] && product.price <= this.lowHighPrice[1])];
+    }
+
   },
 };
 </script>

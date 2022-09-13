@@ -13,8 +13,8 @@
             <!--For Loop-->
         </div>
     </div>
-    <div class="notice-massage" v-else>
-      <h1>No Products are Available!</h1>
+    <div class="loading" v-else>
+      <img clas="responsive-image" src="../assets/images/loading.gif" alt="loading image"/>
     </div>
 
 
@@ -49,7 +49,7 @@ export default {
     flex-flow: row wrap;
     flex-direction: row;
     justify-content: space-around;
-    width: 90%;
+    
 
 }
 .card-container{
@@ -60,13 +60,18 @@ export default {
     align-items: center;
     width: 350px;
     height: 515px;
-    border: 1px solid black;
     border-radius: 20px;
+    box-shadow: 5px 10px 18px #888888;
+    
 }
-.notice-massage{
+.loading{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 100px;
+}
+.responsive-image {
+  width: 100%;
+  height: auto;
 }
 </style>

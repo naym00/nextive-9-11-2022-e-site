@@ -6,7 +6,7 @@
       /></router-link>
     </div>
     <div class="title-box">
-      <p>{{ product.title }}</p>
+      <p>{{ product.title | uppaerStr }}</p>
     </div>
     <hr />
     <div class="price-rating-box">
@@ -21,10 +21,13 @@
 </template>
 
 <script>
+  import stringMethods from '../mixins/stringMethods'
 export default {
   name: "SingleProductCard",
   props: ["product"],
-  components: {},
+  mixins: [stringMethods],
+  components: {
+  },
   data() {
     return {};
   },
@@ -35,13 +38,17 @@ export default {
 
 <style scoped>
 .image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 300px;
 }
 .image-box img {
+  
+  object-fit: cover;
+  height: 280px;
   display: block;
-  height: 100%;
-  width: auto;
-  margin: auto;
+  width: 280px;
   transition: all 0.4s;
 }
 .responsive-image {
@@ -57,6 +64,13 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 150%;
+  
+}
+.title-box p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px;
 }
 .price-rating-box {
   display: flex;

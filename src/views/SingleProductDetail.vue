@@ -1,5 +1,6 @@
 <template>
     <div class="SingleProductdetail">
+        <NavBar :NavBarDetails="['Home', 'Category', 'Details-', 'About']" :cart_visibility="false" v-on:getLowHighPrice="getLowHighPriceRange($event)"></NavBar>
         <div class="flex-container">
             <div class="inner-container">
                 <div class="image">
@@ -16,7 +17,7 @@
                         <span class="discounted-product-price-secondhalf">{{product.discount}}% discount</span>
                     </div>
                     <div class="product-title">
-                        <span>{{product.title}}</span>
+                        <span>{{product.title | uppaerStr}}</span>
                     </div>
                     <div class="product-description">
                         <span>{{product.description}}</span>
@@ -59,6 +60,8 @@
 </template>
   
   <script>
+    import NavBar from '../components/Home/NavBar.vue'
+    import stringMethods from '../mixins/stringMethods'
 export default {
     /*
         "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", 
@@ -71,7 +74,9 @@ export default {
     */
     name: "SingleProductDetail",
     props: ['product'],
+    mixins: [stringMethods],
     components: {
+        NavBar,
     },
     data() {
         return {
@@ -130,7 +135,16 @@ export default {
                 alert("Product Size is missing!");
             }
             else{
+                
                 if(confirm(`Title: ${this.product.title}\nQuantity: ${this.quantity}\nPrice: ${this.totalPrice}\nSize: ${this.productSize}`)){
+                    //this.productAddToCart.push([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize])
+                    
+                    window.localStorage.setItem('productAddToCartLocalStorage', JSON.stringify([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize]));
+                    
+                    
+                    //let addToCartProductDetails= JSON.parse(window.localStorage.getItem('productAddToCartLocalStorage'));
+                    //console.log(addToCartProductDetails);
+                    //window.localStorage.removeItem('productAddToCartLocalStorage');
                     this.$router.push({ name: 'home' });
                 }
             }
@@ -148,7 +162,6 @@ export default {
         justify-content: center;
         align-items: center;
         margin: auto;
-        
         margin-top: 100px;
     }
     .inner-container{

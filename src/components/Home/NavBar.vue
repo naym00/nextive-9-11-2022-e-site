@@ -1,10 +1,9 @@
 <template>
   <div class="navbar">
-
     <div class="container">
       <div class="container-center">
         <div class="container-center-left">
-          <button class="website-logo-name">
+          <a href="/" class="website-logo-name">
             <div class="website-logo">
               <img
                 width="110"
@@ -19,22 +18,32 @@
                 <div><p>Clothings</p></div>
               </div>
             </div>
-          </button>
-          <div class="website-navbar">
-            <div><a class="navbar-a" href="#">Home</a></div>
+          </a>
+          <div class="website-navbar" v-html="prepareAnchorTags">
+            <!--
+            <div><a class="navbar-a" href="/" >Home</a></div>
             <div><a class="navbar-a" href="#">Category</a></div>
             <div><a class="navbar-a" href="#">Discount</a></div>
             <div><a class="navbar-a" href="#">About</a></div>
+            -->
           </div>
         </div>
-        <div class="container-center-right">
+        <div v-if="cart_visibility" class="container-center-right">
           <div class="shopping-cart">
-            <img src="@/assets/images/shopping-cart.png" alt="shopping cart" />
+            <button><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></button>
+            
           </div>
-          <div class="register-login">
-            <a class="register-login-a" href="#" @click="showPrice">Price Range</a>
+          <div class="filter-by-price">
+            <a class="filter-by-price-a" href="#" @click="showPrice">Price Range</a>
           </div>
         </div>
+
+        <div v-if="!cart_visibility" class="container-center-right">
+          <div class="shopping-cart">
+            <button><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -51,6 +60,7 @@
 
 <script>
 export default {
+  props: ['NavBarDetails', 'cart_visibility'],
     data(){
         return {
             popup_flag: false,
@@ -64,6 +74,19 @@ export default {
             this.popup_flag = false;
             this.$emit('getLowHighPrice', value.target.value);
         }
+    },
+    computed:{
+      prepareAnchorTags(){
+        let preparedNavbar = ''
+        const activeStyle = 'style="text-decoration: underline;color: black;border: none;background: none;cursor: pointer;margin: 0 10px;"';
+        const navbarStyle = 'style="text-decoration: none;color: black;border: none;background: none;cursor: pointer;margin: 0 10px;"';
+        
+        this.NavBarDetails.forEach(item => {
+          preparedNavbar += item.includes('-') ? `<div><a ${activeStyle} href="/" >${item.substring(0, item.length-1)}</a></div>` : `<div><a ${navbarStyle} href="/" >${item}</a></div>`;
+          
+        });
+        return preparedNavbar;
+      }
     }
 };
 </script>
@@ -122,6 +145,7 @@ export default {
   align-items: center;
   width: 80%;
 }
+/*
 .navbar-a {
   color: black;
   text-decoration: none;
@@ -134,6 +158,7 @@ export default {
   color: #0086ae;
   text-decoration: underline;
 }
+*/
 .container-center-right {
   display: flex;
   justify-content: space-around;
@@ -145,13 +170,19 @@ export default {
   align-items: center;
   width: 40%;
 }
-.register-login {
+.shopping-cart button{
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.filter-by-price {
   display: flex;
   justify-content: right;
   align-items: center;
   width: 60%;
 }
-.register-login-a {
+.filter-by-price-a {
   padding: 5px 15px;
   color: white;
   text-decoration: none;

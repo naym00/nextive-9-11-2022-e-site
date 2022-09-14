@@ -1,6 +1,6 @@
 <template>
     <div class="SingleProductdetail">
-        <NavBar :NavBarDetails="['Home', 'Category', 'Details-', 'About']" :cart_visibility="false" v-on:getLowHighPrice="getLowHighPriceRange($event)"></NavBar>
+        <NavBar :NavBarDetails="navbarDetails"></NavBar>
         <div class="flex-container">
             <div class="inner-container">
                 <div class="image">
@@ -60,6 +60,7 @@
 </template>
   
   <script>
+    import navBarForSingleProductDetail from "@/assets/forNavbar/SingleProductDetail.json";
     import NavBar from '../components/Home/NavBar.vue'
     import stringMethods from '../mixins/stringMethods'
 export default {
@@ -86,6 +87,7 @@ export default {
             quantity: 1,
             totalPrice: this.calculateDiscountedProductPrice(),
             is_product_size_selected: false,
+            navbarDetails: JSON.parse(JSON.stringify(navBarForSingleProductDetail)),
         }
     },
     methods: {

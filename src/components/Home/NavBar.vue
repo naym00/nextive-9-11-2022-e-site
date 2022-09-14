@@ -19,26 +19,24 @@
               </div>
             </div>
           </a>
-          <div class="website-navbar" v-html="prepareAnchorTags">
-            <!--
-            <div><a class="navbar-a" href="/" >Home</a></div>
-            <div><a class="navbar-a" href="#">Category</a></div>
-            <div><a class="navbar-a" href="#">Discount</a></div>
-            <div><a class="navbar-a" href="#">About</a></div>
-            -->
-          </div>
+          <div class="website-navbar" v-html="prepareAnchorTags"></div>
         </div>
-        <div v-if="cart_visibility" class="container-center-right">
+        <div v-if="NavBarDetails.popupVisibilityForPriceRange" class="container-center-right">
           <div class="shopping-cart">
             <button><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></button>
             
           </div>
+
+          <div class="filter-by-rating">
+            <a class="filter-by-rating-a" href="#" @click="showRating">Rating</a>
+          </div>
+
           <div class="filter-by-price">
             <a class="filter-by-price-a" href="#" @click="showPrice">Price Range</a>
           </div>
         </div>
 
-        <div v-if="!cart_visibility" class="container-center-right">
+        <div v-if="!NavBarDetails.popupVisibilityForPriceRange" class="container-center-right">
           <div class="shopping-cart">
             <button><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></button>
           </div>
@@ -47,7 +45,14 @@
       </div>
     </div>
 
-    <div v-if="popup_flag" class="popup-class">
+    <div v-if="popupFlagForRating" class="popup-class">
+        <button @click="getRatingRange($event)" value="0-1">0-1</button>
+        <button @click="getRatingRange($event)" value="2-3">2-3</button>
+        <button @click="getRatingRange($event)" value="4-5">4-5</button>
+        <button @click="getRatingRange($event)" style="background-color:red; border-radius: 10px;" value="Cancle">Cancle</button>
+    </div>
+
+    <div v-if="popupFlagForPriceRange" class="popup-class">
         <button @click="getPriceRange($event)" value="0-100">000-100</button>
         <button @click="getPriceRange($event)" value="101-200">101-200</button>
         <button @click="getPriceRange($event)" value="201-300">201-300</button>
@@ -55,39 +60,42 @@
         <button @click="getPriceRange($event)" value="401-500">401-500</button>
         <button @click="getPriceRange($event)" style="background-color:red; border-radius: 10px;" value="Cancle">Cancle</button>
     </div>
+
   </div>
 </template>
 
 <script>
+  import PrepareNavbar from '@/mixins/PrepareNavbar'
 export default {
-  props: ['NavBarDetails', 'cart_visibility'],
+  mixins: [PrepareNavbar],
     data(){
         return {
-            popup_flag: false,
+            popupFlagForPriceRange: false,
+            popupFlagForRating: false,
         }
     },
     methods:{
         showPrice(){
-            this.popup_flag = true;
+          if(this.popupFlagForRating){
+            this.popupFlagForRating = false;
+          }
+          this.popupFlagForPriceRange = true;
         },
         getPriceRange(value){
-            this.popup_flag = false;
+            this.popupFlagForPriceRange = false;
             this.$emit('getLowHighPrice', value.target.value);
+        },
+        showRating(){
+          if(this.popupFlagForPriceRange){
+            this.popupFlagForPriceRange = false;
+          }
+            this.popupFlagForRating = true;
+        },
+        getRatingRange(value){
+            this.popupFlagForRating = false;
+            this.$emit('getRating', value.target.value);
         }
     },
-    computed:{
-      prepareAnchorTags(){
-        let preparedNavbar = ''
-        const activeStyle = 'style="text-decoration: underline;color: black;border: none;background: none;cursor: pointer;margin: 0 10px;"';
-        const navbarStyle = 'style="text-decoration: none;color: black;border: none;background: none;cursor: pointer;margin: 0 10px;"';
-        
-        this.NavBarDetails.forEach(item => {
-          preparedNavbar += item.includes('-') ? `<div><a ${activeStyle} href="/" >${item.substring(0, item.length-1)}</a></div>` : `<div><a ${navbarStyle} href="/" >${item}</a></div>`;
-          
-        });
-        return preparedNavbar;
-      }
-    }
 };
 </script>
 
@@ -145,20 +153,10 @@ export default {
   align-items: center;
   width: 80%;
 }
-/*
-.navbar-a {
-  color: black;
-  text-decoration: none;
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin: 0 10px;
-}
-.navbar-a:hover {
+.navbar-a div a:hover{
   color: #0086ae;
   text-decoration: underline;
 }
-*/
 .container-center-right {
   display: flex;
   justify-content: space-around;
@@ -166,9 +164,10 @@ export default {
 }
 .shopping-cart {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 50px;
+
 }
 .shopping-cart button{
   text-decoration: none;
@@ -176,11 +175,26 @@ export default {
   background-color: transparent;
   cursor: pointer;
 }
+.filter-by-rating{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 40%;
+}
+.filter-by-rating-a {
+  padding: 5px 15px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #0086ae;
+}
 .filter-by-price {
   display: flex;
   justify-content: right;
   align-items: center;
-  width: 60%;
+  width: 40%;
 }
 .filter-by-price-a {
   padding: 5px 15px;
@@ -199,19 +213,23 @@ export default {
     position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    top: 35%;
-    left: 90%;
+    top: 50%;
+    left: 50%;
     background-color: papayawhip;
     border-radius: 10px;
-    height: 270px;
+    height: 300px;
     width: 200px;
     opacity: 0.5;
+}
+.popup-class:hover{
+    opacity: 0.8;
 }
 .popup-class button{
     background-color: Transparent;
     text-decoration: none;
     border: none;
     font-size: 150%;
+    font-weight: bold;
     margin: 3% 0%;
     cursor: pointer;
 }

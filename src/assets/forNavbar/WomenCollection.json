@@ -1,0 +1,71 @@
+{
+    "activeStyle": "text-decoration: underline;",
+    "navbars": [
+      {
+        "id": 1,
+        "active": false,
+        "name": "HOME",
+        "path": "",
+        "style": "font-size: 120%;font-weight: bold;color: black;text-decoration: none;border: none;background: none;cursor: pointer;margin: 0 10px;",
+        "onMouseOver": "blue",
+        "onMouseOut": "black"
+      },
+      {
+        "id": 2,
+        "active": false,
+        "name": "NEW IN",
+        "path": "newcollection",
+        "style": "font-size: 120%;font-weight: bold;color: black;text-decoration: none;border: none;background: none;cursor: pointer;margin: 0 10px;",
+        "onMouseOver": "blue",
+        "onMouseOut": "black"
+      },
+      {
+        "id": 3,
+        "active": false,
+        "name": "EID COLLECTION",
+        "path": "eidcollection",
+        "style": "font-size: 120%;font-weight: bold;color: #ff0000;text-decoration: none;border: none;background: none;cursor: pointer;margin: 0 10px;",
+        "onMouseOver": "blue",
+        "onMouseOut": "#ff0000"
+      },
+      {
+        "id": 4,
+        "active": false,
+        "name": "PUJA COLLECTION",
+        "path": "pujacollection",
+        "style": "font-size: 120%;font-weight: bold;color: #ff0000;text-decoration: none;border: none;background: none;cursor: pointer;margin: 0 10px;",
+        "onMouseOver": "blue",
+        "onMouseOut": "#ff0000"
+      },
+      {
+        "id": 5,
+        "active": false,
+        "name": "MEN",
+        "path": "mencollection",
+        "style": "font-size: 120%;font-weight: bold;color: black;text-decoration: none;border: none;background: none;cursor: pointer;margin: 0 10px;",
+        "onMouseOver": "blue",
+        "onMouseOut": "black"
+      },
+      {
+        "id": 6,
+        "active": true,
+        "name": "WOMEN",
+        "path": "womencollection",
+        "style": "font-size: 120%;font-weight: bold;color: black;text-decoration: none;border: none;background: none;cursor: pointer;margin: 0 10px;",
+        "onMouseOver": "blue",
+        "onMouseOut": "black"
+      },
+      {
+        "id": 7,
+        "active": false,
+        "name": "KIDS",
+        "path": "kidcollection",
+        "style": "font-size: 120%;font-weight: bold;color: black;text-decoration: none;border: none;background: none;cursor: pointer;margin: 0 10px;",
+        "onMouseOver": "blue",
+        "onMouseOut": "black"
+      }
+    ],
+    "popupVisibilityForPriceRange": true,
+    "popupVisibilityForRating": true
+  }
+  

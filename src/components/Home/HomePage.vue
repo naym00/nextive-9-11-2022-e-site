@@ -1,25 +1,24 @@
 <template>
   <div class="homepage">
-    <!--<GetProductsFromApi v-on:getAllProducts="getProducts($event)"></GetProductsFromApi>-->
     <ShowAllProducts :products="copyProducts"></ShowAllProducts>
   </div>
   
 </template>
 
 <script>
-    //import GetProductsFromApi from '@/components/GetProductsFromApi.vue'
+  import extraProducts from '@/assets/ExtraProduct/extraProduct.json'
     import ShowAllProducts from '@/components/ShowAllProducts.vue'
 export default {
   name: "HomePage",
   components: {
-    //GetProductsFromApi,
     ShowAllProducts,
   },
-  props: ["lowHighPrice"],
+  props: ["lowHighPrice", "lowHighRating", "category"],
   data() {
     return {
         products: [],
         copyProducts: [],
+        extraAddedProducts: JSON.parse(JSON.stringify(extraProducts)),
     };
   },
   mounted(){
@@ -32,24 +31,25 @@ export default {
         this.$http
           .get(apiUrl)
           .then((response) => {
-            this.products = [...response.data].map(item => ({ title: item.title, price: item.price, description: item.description, category: item.category, image: item.image, rate: item.rating.rate, discount: parseInt(Math.random() * (10 - 1) + 1)}));
-            //this.$emit('getAllProducts', this.products);
-            this.getProducts();
+            this.products = [...response.data].map(item => ({ title: item.title, price: item.price, description: item.description, category: [item.category], image: item.image, rate: item.rating.rate, discount: parseInt(Math.random() * (10 - 1) + 1)}));
+            this.products = [...this.products, ...this.extraAddedProducts]
+            if(this.category == "all"){
+              this.copyProducts = [...this.products];
+            }
+            else{
+              this.copyProducts = this.products.filter(product => product.category.indexOf(this.category) != -1);
+            }
           })
           .catch((err) => console.log(err));
     },
-    //getProducts(allProducts){
-    //    this.products=[...allProducts.filter(product => product.price >= this.lowHighPrice[0] && product.price <= this.lowHighPrice[1])];
-    //    this.copyProducts = [...this.products];
-    //}
-    getProducts(){
-      this.copyProducts=[...this.products.filter(product => product.price >= this.lowHighPrice[0] && product.price <= this.lowHighPrice[1])];
-    }
   },
   watch:{
 
     lowHighPrice: function (){
       this.copyProducts=[...this.products.filter(product => product.price >= this.lowHighPrice[0] && product.price <= this.lowHighPrice[1])];
+    },
+    lowHighRating: function (){
+      this.copyProducts=[...this.products.filter(product => product.rate >= this.lowHighRating[0] && product.rate <= this.lowHighRating[1])];
     }
 
   },

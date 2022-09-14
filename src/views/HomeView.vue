@@ -1,13 +1,15 @@
 <template>
   <div class="home">
 
-    <NavBar :NavBarDetails="['Home-', 'Category', 'About']" :cart_visibility="true" v-on:getLowHighPrice="getLowHighPriceRange($event)"></NavBar>
-
-    <HomePage :lowHighPrice="lowHighPrice"></HomePage>
+    <NavBar :NavBarDetails="navbarDetails" v-on:getRating="getRating($event)" v-on:getLowHighPrice="getLowHighPrice($event)"></NavBar>
+    
+    <HomePage :lowHighPrice="lowHighPrice" :lowHighRating="lowHighRating" :category="category"></HomePage>
   </div>
 </template>
 
 <script>
+import navBarForEidCollection from "@/assets/forNavbar/HomeView.json";
+
 import NavBar from '@/components/Home/NavBar.vue'
 import HomePage from '@/components/Home/HomePage.vue'
 export default {
@@ -19,14 +21,18 @@ export default {
   data(){
     return {
       lowHighPrice: [0, 1000],
+      lowHighRating: [0, 5],
+      category: "all",
+      navbarDetails: JSON.parse(JSON.stringify(navBarForEidCollection)),
       //addToCartProductDetails: JSON.parse(window.localStorage.getItem('productAddToCartLocalStorage')),
       //CartList: [],
     }
   },
+  /*
   mounted(){
     this.addToCart();
   },
-  /*
+  
   watch:{
     
     addToCartProductDetails: function (){
@@ -37,18 +43,16 @@ export default {
 
 },*/
   methods: {
-    getLowHighPriceRange(price){
+    getLowHighPrice(price){
       if(price != 'Cancle'){
         this.lowHighPrice = [...(price.split("-")).map(Number)];
       }
-      
     },
-    addToCart(){
-
-      console.log('Here!!');
-      this.CartList.push(this.addToCartProductDetails);
-      window.localStorage.removeItem('productAddToCartLocalStorage');
-  },
+    getRating(rating){
+      if(rating != 'Cancle'){
+        this.lowHighRating = [...(rating.split("-")).map(Number)];
+      }
+    },
   },
   
 }

@@ -1,0 +1,173 @@
+[
+    {
+        "title": "This is a random baby boy dress.", 
+        "price": 178, 
+        "description": "This is a random baby boy dress, ", 
+        "category": ["kids"], 
+        "image": "https://i.pinimg.com/originals/c5/5e/8f/c55e8f5cd1a2cb3cb710488e1e47cb69.jpg", 
+        "rate": 5,
+        "discount": 0
+    },
+    {
+        "title": "Birthday Outfit Baby Boys Clothes.", 
+        "price": 208, 
+        "description": "Baby Boy Smart 1st Birthday Outfit Baby Boys Clothes | Emile et Rose Robbie Braces Outfit - Baby Boys Elias - Christening Outfits - Baby Boys Baby boy", 
+        "category": ["kids", "eid collection", "puja collection"], 
+        "image": "https://thebobostore.pk/pub/media/catalog/product/5/4/cute-baby-boy-birthday-dress.jpg", 
+        "rate": 4.5,
+        "discount": 7
+    },
+    {
+        "title": "Formal Boys look.", 
+        "price": 380, 
+        "description": "Smart Boys ideas | kids outfits Baby Boys Wedding Christening Formal Boys look cool in suits Baby Boys Summer Party Wedding Smart 20+ Smart Boys", 
+        "category": ["kids", "eid collection", "puja collection", "new collection"], 
+        "image": "https://static.hopscotch.in/fstatic/product/202207/5ff9fee0-8605-45e5-858b-4f9939403214_large.jpg", 
+        "rate": 3.8,
+        "discount": 10
+    },
+    {
+        "title": "Baby Boys Wedding Christening Formal Boys look.", 
+        "price": 180, 
+        "description": "kids outfits Baby Boys Wedding Christening Formal Boys look cool in suits Baby Boys Summer Party Wedding Smart 20+ Smart Boys", 
+        "category": ["kids", "new collection"],
+        "image": "https://static-01.daraz.com.bd/p/fd51491089b80a32bd7899231b0889a2.jpg", 
+        "rate": 2.8,
+        "discount": 15
+    },
+    {
+        "title": "Baby girls dresses.", 
+        "price": 480, 
+        "description": "Looking for a good deal on smart baby girls dresses? Explore a wide range of the best smart baby girls dresses", 
+        "category": ["kids", "eid collection"], 
+        "image": "https://ae01.alicdn.com/kf/He5b1d3413d524880a27afae9ad4823d2U/2022-Formal-Summer-Dress-Baby-Girl-Flower-Kids-Dresses-For-Girls-Children-Clothing-Ball-Gown-Party.jpg", 
+        "rate": 3.8,
+        "discount": 10
+    },
+    {
+        "title": "Shop Dresses Online for Baby Girls.", 
+        "price": 500, 
+        "description": "Baby Girl Dress - Shop Dresses Online for Baby Girls in India. Pick Solid, Striped", 
+        "category": ["kids", "eid collection", "new collection"], 
+        "image": "https://i.pinimg.com/originals/e9/55/f2/e955f2b533e2c48f9c8bf5765605fc8b.jpg", 
+        "rate": 4.9,
+        "discount": 25
+    },
+    {
+        "title": "Dresses for Baby Girls.", 
+        "price": 200, 
+        "description": "Shop Dresses Online for Baby Girls in India. Pick Solid, Striped", 
+        "category": ["kids", "eid collection"], 
+        "image": "https://sc04.alicdn.com/kf/H4f5b1eea69384932816705798bda779fl.jpg", 
+        "rate": 3.6,
+        "discount": 30
+    },
+    {
+        "title": "Festive Dress.", 
+        "price": 360, 
+        "description": "Nevertheless, smart clothes have great potential for children and babies because parents like to rely on modern high-tech solutions", 
+        "category": ["kids", "eid collection", "new collection"], 
+        "image": "https://cdn.shopify.com/s/files/1/0269/3929/3744/products/15_f1936fbd-cdce-454a-9b7b-fbcdce18b2d5_600x.jpg", 
+        "rate": 1.6,
+        "discount": 5
+    },
+    {
+        "title": "Floral Print V-neck Gown Dress with Bell Sleeves.", 
+        "price": 1516, 
+        "description": "Easy 15 days return and exchange. Return Policies may vary based on products and promotions. For full details on our Returns Policies, please ", 
+        "category": ["eid collection", "puja collection", "women's clothing"], 
+        "image": "https://assets.ajio.com/medias/sys_master/root/20220817/zk8M/62fc174baeb2691761792270/-473Wx593H-464818638-black-MODEL7.jpg", 
+        "rate": 4.5,
+        "discount": 7
+    },
+    {
+        "title": "This Chhath Puja Dress Up.", 
+        "price": 3050, 
+        "description": "This Chhath Puja Dress Up In Stylish Outfits By Bunaai", 
+        "category": ["puja collection", "women's clothing", "new collection"], 
+        "image": "https://cdn.shopify.com/s/files/1/0105/8881/5418/files/Yellow_Blockprinted_Suit_Set.jpg", 
+        "rate": 3.2,
+        "discount": 30
+    },
+    {
+        "title": "The festive season does not reach its full grandeur.", 
+        "price": 4999, 
+        "description": "The festive season does not reach its full grandeur until six days after the festival of light, which is observed as Chhath Puja! Celebrated to thank Lord Surya for sustaining life on earth, it brings a thread of traditional appeal and sheer joy that celebrates the spirit of life, like no other. ", 
+        "category": ["puja collection", "women's clothing"], 
+        "image": "https://cdn.shopify.com/s/files/1/0105/8881/5418/files/Orange_Ochre_Suit_Set.jpg", 
+        "rate": 4.3,
+        "discount": 25
+    },
+    {
+        "title": "Bunaai has got you some amazing outfit ideas.", 
+        "price": 2599, 
+        "description": "This 2021, Bunaai has got you some amazing outfit ideas crafted with shades of sun - Red, Yellow, and Orange to get slaying this Chhath Puja. Comfortable, chic, and full of the latest trends, our colorful ensembles will add the right charm to your festive wardrobe.", 
+        "category": ["puja collection", "women's clothing", "new collection"], 
+        "image": "https://cdn.shopify.com/s/files/1/0105/8881/5418/files/Yellow_Bandhani_Cotton_Dress.jpg", 
+        "rate": 2.3,
+        "discount": 25
+    },
+    {
+        "title": "Random Saree.", 
+        "price": 1500, 
+        "description": "Red, Yellow, and Orange to get slaying this Chhath Puja. Comfortable, chic, and full of the latest trends, our colorful ensembles will add the right charm to your festive wardrobe.", 
+        "category": ["puja collection", "women's clothing"], 
+        "image": "https://static-01.daraz.com.bd/p/895891625a95c3ea80fc6bbc7ff3c572.jpg", 
+        "rate": 5,
+        "discount": 12
+    },
+    {
+        "title": "Junior Boy’s Panjabi | Eid Collection 2022.", 
+        "price": 1450, 
+        "description": "Dress up your little prince from our variety of Junior Boys Panjabi collections from Easy Fashion Eid Collection 2022. Shop from our new arrival of the Junior Boys Panjabi collection 2022 and complement your child’s eid dress today!", 
+        "category": ["kids", "eid collection", "new collection"], 
+        "image": "https://easyfashion.com.bd/wp-content/uploads/2022/04/Junior-Boys-Panjabi-Eid-Collection-2022-Red-Panjabi-scaled.jpg", 
+        "rate": 5,
+        "discount": 10
+    },
+    {
+        "title": "Best Stylish Eid & Boishak Collection Cotton Panjabi in Bangladesh.", 
+        "price": 1680, 
+        "description": "Exclusive looking new cotton panjabi for Eid festival. This media block panjabi is made from the best cotton available in Bangladesh. It is light weight and has a very comfortable and soft feeling", 
+        "category": ["men's clothing", "eid collection", "puja collection"], 
+        "image": "https://sadakalo.net/wp-content/uploads/2022/04/Best-Stylish-Eid-Collection-Cotton-Panjabi-in-Bangladesh.jpg", 
+        "rate": 3.8,
+        "discount": 20
+    },
+    {
+        "title": "Gul Ahmed Luxury Festive Eid Collection 2022.", 
+        "price": 2999, 
+        "description": "Luxury Festive Eid Collection 2022 by Gul Ahmed features a wide range of costumes in dark and pastel tones", 
+        "category": ["women's clothing", "eid collection", "new collection"], 
+        "image": "https://i0.wp.com/www.dailyinfotainment.com/wp-content/uploads/2022/04/Gul-Ahmed-Luxury-Festive-Eid-2.jpg", 
+        "rate": 4.2,
+        "discount": 0
+    },
+    {
+        "title": "Saira Habib Summer Luxe Eid Collection.", 
+        "price": 2999, 
+        "description": "High up on our list of Eid favorites is this crush worthy soft and sensual pret line by Saira Habib. A designer who prefers to maintain her understated feminine stance, Saira is one designer not to skip when she reveals a new collection.", 
+        "category": ["women's clothing", "eid collection"], 
+        "image": "https://www.secretcloset.pk/blog/wp-content/uploads/2016/06/saira_habib_eid_collection_540_01.jpg", 
+        "rate": 4.5,
+        "discount": 10
+    },
+    {
+        "title": "Panjabi | Summer Collection 2022.", 
+        "price": 1980, 
+        "description": "Easy Fashion brings you Panjabi for men in this Summer Collection of 2022. Feel comfortable and stay in fashion hassle-free with the latest collection of Panjabi for men in Bangladesh. Shop online or visit your nearest Easy Fashion Store.", 
+        "category": ["men's clothing", "eid collection", "new collection"], 
+        "image": "https://easyfashion.com.bd/wp-content/uploads/2022/04/LOLL-min.jpg", 
+        "rate": 2.5,
+        "discount": 20
+    },
+    {
+        "title": "Pakistani Eid Dresses for Girls | Silk Festival Collection", 
+        "price": 2599, 
+        "description": "veryone is in search to get the perfect Eid dress design for themselves. Silk is a luxery fabric that has an ethereal and stunning appearance with its soft and shiny texture. In any form whether shirt, dress or trousers, silk oozes luxury. Offering a great deal of versatility and value, the fabric is definitely worth having in your wardrobe.", 
+        "category": ["women's clothing", "eid collection", "new collection"], 
+        "image": "https://cdn.shopify.com/s/files/1/2635/3244/files/DSCF0798_2_large_ee681482-951f-44cb-8789-146b653e1181_large.jpg", 
+        "rate": 4.9,
+        "discount": 16
+    }
+]

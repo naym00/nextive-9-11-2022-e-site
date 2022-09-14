@@ -2,7 +2,7 @@
   <div class="home">
 
     <NavBar :NavBarDetails="navbarDetails" v-on:getRating="getRating($event)" v-on:getLowHighPrice="getLowHighPrice($event)"></NavBar>
-    
+    <h3 class="page-heading">{{prepareHeading()[0].name}}</h3>
     <HomePage :lowHighPrice="lowHighPrice" :lowHighRating="lowHighRating" :category="category"></HomePage>
   </div>
 </template>
@@ -53,8 +53,19 @@ export default {
         this.lowHighRating = [...(rating.split("-")).map(Number)];
       }
     },
+    prepareHeading(){
+          return this.navbarDetails.navbars.filter(eachNavbar => eachNavbar.active);
+        },
   },
   
 }
 
 </script>
+
+<style>
+  .page-heading{
+    font-size: 250%;
+    color:burlywood;
+    text-align: center;
+  }
+</style>

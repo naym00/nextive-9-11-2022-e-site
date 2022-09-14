@@ -42,15 +42,12 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 3% 0%;
 }
 .inner-flex-container{
     display: flex;
     flex-flow: row wrap;
     flex-direction: row;
     justify-content: space-around;
-    
-
 }
 .card-container{
     margin: 5px 10px;

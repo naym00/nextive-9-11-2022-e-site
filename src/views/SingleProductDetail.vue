@@ -1,6 +1,7 @@
 <template>
     <div class="SingleProductdetail">
         <NavBar :NavBarDetails="navbarDetails"></NavBar>
+        <h3 class="page-heading">{{prepareHeading()[0].name}}</h3>
         <div class="flex-container">
             <div class="inner-container">
                 <div class="image">
@@ -151,7 +152,10 @@ export default {
                     this.$router.push({ name: 'home' });
                 }
             }
-        }
+        },
+        prepareHeading(){
+          return this.navbarDetails.navbars.filter(eachNavbar => eachNavbar.active);
+        },
     },
     mounted() {
         this.rating();
@@ -160,6 +164,11 @@ export default {
 </script>
 
   <style>
+    .page-heading{
+    font-size: 250%;
+    color:burlywood;
+    text-align: center;
+  }
     .flex-container{
         display:flex;
         justify-content: center;

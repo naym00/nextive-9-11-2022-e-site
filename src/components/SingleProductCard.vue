@@ -50,6 +50,7 @@ export default {
   display: block;
   width: 280px;
   transition: all 0.4s;
+  border-radius: 50px;
 }
 .responsive-image {
   width: 100%;

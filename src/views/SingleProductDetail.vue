@@ -11,7 +11,8 @@
                         <div class="rating-icon" v-html="rateStr"></div>
                         <div class="rating-value"><p>( Rating {{product.rate}} )</p></div>
                     </div>
-                    <div class="original-product-price"><span>৳ {{product.price}}</span></div>
+                    <div v-if="!visibilityForDiscountProductPrice" class="original-product-price-no-discount"><span>৳ {{product.price}}</span></div>
+                    <div v-if="visibilityForDiscountProductPrice" class="original-product-price"><span>৳ {{product.price}}</span></div>
                     <div v-if="visibilityForDiscountProductPrice" class="discounted-product-price">
                         <span class="discounted-product-price-firsthalf">৳ {{calculateDiscountedProductPrice()}}</span>
                         <span class="discounted-product-price-secondhalf">{{product.discount}}% discount</span>
@@ -189,6 +190,15 @@ export default {
     .product-rating{
         display:flex;
         flex-direction: row;
+    }
+    .original-product-price-no-discount{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .original-product-price-no-discount span{
+        font-size: 230%;
+        color:red;
     }
     .original-product-price{
         display: flex;

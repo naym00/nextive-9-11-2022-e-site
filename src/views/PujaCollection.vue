@@ -1,6 +1,6 @@
 <template>
     <div class="pujacollection">
-      <NavBar :NavBarDetails="navbarDetails"></NavBar>
+      <NavBar :NavBarDetails="navbarDetails" v-on:getRating="getRating($event)" v-on:getLowHighPrice="getLowHighPrice($event)"></NavBar>
       <HomePage :lowHighPrice="lowHighPrice" :lowHighRating="lowHighRating" :category="category"></HomePage>
     </div>
 </template>

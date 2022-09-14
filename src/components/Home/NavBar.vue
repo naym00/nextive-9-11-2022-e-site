@@ -49,7 +49,14 @@
         <button @click="getRatingRange($event)" value="0-1">0-1</button>
         <button @click="getRatingRange($event)" value="2-3">2-3</button>
         <button @click="getRatingRange($event)" value="4-5">4-5</button>
+        <div class="popup-class-input">
+          <div><input v-model="inputLowerRating" style="width:40px;" type="text"></div>
+          <h3 style="margin: 0 10px;">to</h3>
+          <div><input v-model="inputUpperRating" style="width:40px;" type="text"></div>
+          <button @click="getRatingRange($event)" style="width:40px;" value="input">Go</button>
+        </div>
         <button @click="getRatingRange($event)" style="background-color:red; border-radius: 10px;" value="Cancle">Cancle</button>
+        <span v-if="noticeForInputFeildVisibility" class="notice">{{noticeForInputFeild}}</span>
     </div>
 
     <div v-if="popupFlagForPriceRange" class="popup-class">
@@ -58,7 +65,14 @@
         <button @click="getPriceRange($event)" value="201-300">201-300</button>
         <button @click="getPriceRange($event)" value="301-400">301-400</button>
         <button @click="getPriceRange($event)" value="401-500">401-500</button>
+        <div class="popup-class-input">
+          <div><input v-model="inputLowerPrice" style="width:40px;" type="text"></div>
+          <h3 style="margin: 0 10px;">to</h3>
+          <div><input v-model="inputUpperPrice" style="width:40px;" type="text"></div>
+          <button @click="getPriceRange($event)" style="width:40px;" value="input">Go</button>
+        </div>
         <button @click="getPriceRange($event)" style="background-color:red; border-radius: 10px;" value="Cancle">Cancle</button>
+        <span v-if="noticeForInputFeildVisibility" class="notice">{{noticeForInputFeild}}</span>
     </div>
 
   </div>
@@ -70,8 +84,17 @@ export default {
   mixins: [PrepareNavbar],
     data(){
         return {
-            popupFlagForPriceRange: false,
-            popupFlagForRating: false,
+          inputLowerRating: "",
+          inputUpperRating: "",
+
+          inputLowerPrice: "",
+          inputUpperPrice: "",
+
+          noticeForInputFeildVisibility: false,
+          noticeForInputFeild: "",
+
+          popupFlagForPriceRange: false,
+          popupFlagForRating: false,
         }
     },
     methods:{
@@ -82,8 +105,7 @@ export default {
           this.popupFlagForPriceRange = true;
         },
         getPriceRange(value){
-            this.popupFlagForPriceRange = false;
-            this.$emit('getLowHighPrice', value.target.value);
+          this.calculateRange(value.target.value, this.inputLowerPrice, this.inputUpperPrice, 0, 50000, 'getLowHighPrice', 'Price');
         },
         showRating(){
           if(this.popupFlagForPriceRange){
@@ -92,8 +114,61 @@ export default {
             this.popupFlagForRating = true;
         },
         getRatingRange(value){
+          this.calculateRange(value.target.value, this.inputLowerRating, this.inputUpperRating, 0, 5, 'getRating', 'Rating');
+        },
+        calculateRange(value, lowerRange, upperRange, lowestValue, biggestValue, v_on_method, feild){
+          this.noticeForInputFeildVisibility = false;
+          this.noticeForInputFeild = "";
+
+          if(value == "input"){
+            if(!isNaN(lowerRange) && !isNaN(upperRange)){
+              if(lowerRange != upperRange){
+                if(parseInt(lowerRange)<parseInt(upperRange)){
+                  if(parseInt(lowerRange)>0 && parseInt(upperRange)>0){
+                    if((parseInt(lowerRange) >= lowestValue && parseInt(lowerRange)<=biggestValue) && (parseInt(upperRange)>=lowestValue && parseInt(upperRange)<=biggestValue)){
+                    
+                      this.noticeForInputFeildVisibility = false;
+                      this.popupFlagForRating = false;
+                      this.popupFlagForPriceRange = false;
+                      this.$emit(v_on_method, lowerRange + '-' + upperRange);
+                    }
+                    else{
+                      this.noticeForInputFeildVisibility = true;
+                      this.noticeForInputFeild = `${lowestValue}<=${feild}<=${biggestValue}`;
+                    }
+                  }
+                  else{
+                    this.noticeForInputFeildVisibility = true;
+                    this.noticeForInputFeild = `Negative ${feild} are not allowed!`;
+                  }
+                }
+                else{
+                  this.noticeForInputFeildVisibility = true;
+                  this.noticeForInputFeild = "First Feild < Second Feild!";
+                }
+              }
+              else{
+                if(lowerRange == ""){
+                  this.noticeForInputFeildVisibility = true;
+                  this.noticeForInputFeild = "Enter Feilds!";
+                }
+                else{
+                  this.noticeForInputFeildVisibility = true;
+                  this.noticeForInputFeild = `${feild} Shouldn't be same!`;
+                }
+              }
+            }
+            else{
+              this.noticeForInputFeildVisibility = true;
+              this.noticeForInputFeild = "Please don't enter string!";
+            }
+          }
+          else{
+            this.noticeForInputFeildVisibility = false;
             this.popupFlagForRating = false;
-            this.$emit('getRating', value.target.value);
+            this.popupFlagForPriceRange = false;
+            this.$emit(v_on_method, value);
+          }
         }
     },
 };
@@ -217,9 +292,19 @@ export default {
     left: 50%;
     background-color: papayawhip;
     border-radius: 10px;
-    height: 300px;
-    width: 200px;
+    height: 400px;
+    width: 250px;
     opacity: 0.5;
+}
+.popup-class-input{
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.notice{
+  font-size: 100%;
+  color: red;
 }
 .popup-class:hover{
     opacity: 0.8;

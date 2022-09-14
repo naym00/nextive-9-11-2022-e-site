@@ -2,7 +2,6 @@
   <div class="homepage">
     <ShowAllProducts :products="copyProducts"></ShowAllProducts>
   </div>
-  
 </template>
 
 <script>
@@ -26,18 +25,18 @@ export default {
   },
   methods: {
     getProductDataFromAPI(){
-      console.log('Called!');
       const apiUrl = "https://fakestoreapi.com/products";
         this.$http
           .get(apiUrl)
           .then((response) => {
             this.products = [...response.data].map(item => ({ title: item.title, price: item.price, description: item.description, category: [item.category], image: item.image, rate: item.rating.rate, discount: parseInt(Math.random() * (10 - 1) + 1)}));
-            this.products = [...this.products, ...this.extraAddedProducts]
+            this.products = [...this.extraAddedProducts, ...this.products];
             if(this.category == "all"){
               this.copyProducts = [...this.products];
             }
             else{
-              this.copyProducts = this.products.filter(product => product.category.indexOf(this.category) != -1);
+              this.products = this.products.filter(product => product.category.indexOf(this.category) != -1);
+              this.copyProducts = [...this.products];
             }
           })
           .catch((err) => console.log(err));

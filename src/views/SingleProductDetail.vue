@@ -93,7 +93,7 @@ export default {
     },
     methods: {
         getAddToCartProducts(){
-      let addtoCartProductsSTR = localStorage.getItem('ProductsAddToCart');
+      let addtoCartProductsSTR = window.localStorage.getItem('ProductsAddToCart');
       
       return JSON.parse(`[${addtoCartProductsSTR}]`);
     },
@@ -135,8 +135,8 @@ export default {
                 
                 if(confirm(`Title: ${this.product.title}\nQuantity: ${this.quantity}\nPrice: ${this.totalPrice}\nSize: ${this.productSize}`)){
 
-                    let previousProductsAddToCart = localStorage.getItem('ProductsAddToCart');
-                    if(previousProductsAddToCart == null){
+                    let previousProductsAddToCart = window.localStorage.getItem('ProductsAddToCart');
+                    if(previousProductsAddToCart == null || previousProductsAddToCart == ""){
                         let objStr = JSON.stringify([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize]);
                         window.localStorage.setItem('ProductsAddToCart', `${objStr}`);
                     }

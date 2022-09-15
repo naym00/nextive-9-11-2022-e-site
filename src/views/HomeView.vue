@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getAddToCartProducts(){
-      let addtoCartProductsSTR = localStorage.getItem('ProductsAddToCart');
+      let addtoCartProductsSTR =window.localStorage.getItem('ProductsAddToCart');
       
       return JSON.parse(`[${addtoCartProductsSTR}]`);
     },

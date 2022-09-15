@@ -19,7 +19,7 @@
                     <td><h1>{{product[2]}}</h1></td>
                     <td><h1>{{product[3]}}</h1></td>
                     <td><h1>{{product[4]}}</h1></td>
-                    <td><button @click="getIndex($event)" :value="index">Delete</button></td>
+                    <td><button @click="deleteProduct($event)" :value="index">Delete</button></td>
                     
                 </tr>
             </table>
@@ -50,7 +50,7 @@
       
       return JSON.parse(`[${addtoCartProductsSTR}]`);
     },
-    getIndex(index){
+    deleteProduct(index){
       let afterDeleteProduct = this.getAddToCartProducts().filter((product, productIndex) => {
         if(productIndex != parseInt(index.target.value)){
           return product;
@@ -59,7 +59,6 @@
       let afterDeleteProductSTR = JSON.stringify(afterDeleteProduct);
       window.localStorage.removeItem('ProductsAddToCart');
       window.localStorage.setItem('ProductsAddToCart', afterDeleteProductSTR.substring(1, afterDeleteProductSTR.length-1));
-      //window.location.reload();
       this.$router.go();
     }
   },

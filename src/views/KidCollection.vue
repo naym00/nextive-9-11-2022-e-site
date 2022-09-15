@@ -1,6 +1,6 @@
 <template>
     <div class="kidcollection">
-      <NavBar :NavBarDetails="navbarDetails" v-on:getRating="getRating($event)" v-on:getLowHighPrice="getLowHighPrice($event)"></NavBar>
+      <NavBar :NavBarDetails="navbarDetails" :addToCartLength="getAddToCartProducts().length" v-on:getRating="getRating($event)" v-on:getLowHighPrice="getLowHighPrice($event)"></NavBar>
       <h3 class="page-heading">{{prepareHeading()[0].name}}</h3>
       <HomePage :lowHighPrice="lowHighPrice" :lowHighRating="lowHighRating" :category="category"></HomePage>
     </div>
@@ -27,6 +27,11 @@
     mounted(){
     },
     methods: {
+      getAddToCartProducts(){
+      let addtoCartProductsSTR = localStorage.getItem('ProductsAddToCart');
+      
+      return JSON.parse(`[${addtoCartProductsSTR}]`);
+    },
     getLowHighPrice(price){
       if(price != 'Cancle'){
         this.lowHighPrice = [...(price.split("-")).map(Number)];

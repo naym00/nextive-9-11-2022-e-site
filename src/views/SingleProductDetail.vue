@@ -1,6 +1,6 @@
 <template>
     <div class="SingleProductdetail">
-        <NavBar :NavBarDetails="navbarDetails"></NavBar>
+        <NavBar :NavBarDetails="navbarDetails" :addToCartLength="getAddToCartProducts().length"></NavBar>
         <h3 class="page-heading">{{prepareHeading()[0].name}}</h3>
         <div class="flex-container">
             <div class="inner-container">
@@ -93,6 +93,11 @@ export default {
         }
     },
     methods: {
+        getAddToCartProducts(){
+      let addtoCartProductsSTR = localStorage.getItem('ProductsAddToCart');
+      
+      return JSON.parse(`[${addtoCartProductsSTR}]`);
+    },
         rating() {
     
             this.rateStr = '';
@@ -141,14 +146,17 @@ export default {
             else{
                 
                 if(confirm(`Title: ${this.product.title}\nQuantity: ${this.quantity}\nPrice: ${this.totalPrice}\nSize: ${this.productSize}`)){
-                    //this.productAddToCart.push([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize])
-                    
-                    window.localStorage.setItem('productAddToCartLocalStorage', JSON.stringify([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize]));
-                    
-                    
-                    //let addToCartProductDetails= JSON.parse(window.localStorage.getItem('productAddToCartLocalStorage'));
-                    //console.log(addToCartProductDetails);
-                    //window.localStorage.removeItem('productAddToCartLocalStorage');
+
+                    let previousProductsAddToCart = localStorage.getItem('ProductsAddToCart');
+                    if(previousProductsAddToCart == null){
+                        let objStr = JSON.stringify([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize]);
+                        window.localStorage.setItem('ProductsAddToCart', `${objStr}`);
+                    }
+                    else{
+                        let objStr = JSON.stringify([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize]);
+                        window.localStorage.setItem('ProductsAddToCart', `${previousProductsAddToCart}, ${objStr}`);
+                    }
+
                     this.$router.push({ name: 'home' });
                 }
             }

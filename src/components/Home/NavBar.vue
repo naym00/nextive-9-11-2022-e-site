@@ -23,7 +23,8 @@
         </div>
         <div v-if="NavBarDetails.popupVisibilityForPriceRange" class="container-center-right">
           <div class="shopping-cart">
-            <button><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></button>
+            <h3 class="shopping-cart-product-number">{{addToCartLength}}</h3>
+            <a href="/addtocart"><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></a>
             
           </div>
 
@@ -38,7 +39,8 @@
 
         <div v-if="!NavBarDetails.popupVisibilityForPriceRange" class="container-center-right">
           <div class="shopping-cart">
-            <button><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></button>
+            <h3 class="shopping-cart-product-number">{{addToCartLength}}</h3>
+            <a href="/addtocart"><img src="@/assets/images/shopping-cart.png" alt="shopping cart" /></a>
           </div>
         </div>
 
@@ -81,6 +83,7 @@
 <script>
   import PrepareNavbar from '@/mixins/PrepareNavbar'
 export default {
+  props: ['addToCartLength'],
   mixins: [PrepareNavbar],
     data(){
         return {
@@ -239,12 +242,16 @@ export default {
 }
 .shopping-cart {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 50px;
-
 }
-.shopping-cart button{
+.shopping-cart-product-number{
+  font-size: 150%;
+  color:brown;
+}
+.shopping-cart a{
   text-decoration: none;
   border: none;
   background-color: transparent;

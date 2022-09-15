@@ -2,7 +2,7 @@
   <div class="singleproductcard">
     <div class="image-box">
       <router-link :to="{ name: 'productdetails', params: { product } }"
-        ><img clas="responsive-image" :src="product.image" alt="Card image"
+        ><img class="responsive-image" :src="product.image" alt="Card image"
       /></router-link>
     </div>
     <div class="title-box">

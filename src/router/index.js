@@ -8,6 +8,7 @@ import MenCollection from '../views/MenCollection.vue'
 import NewCollection from '../views/NewCollection.vue'
 import PujaCollection from '../views/PujaCollection.vue'
 import WomenCollection from '../views/WomenCollection.vue'
+import AddToCart from '../views/AddToCart.vue'
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,11 @@ const routes = [
     name: 'womencollection',
     component: WomenCollection, 
     props: true
+  },
+  {
+    path: '/addtocart',
+    name: 'addtocart',
+    component: AddToCart, 
   }
 ]
 

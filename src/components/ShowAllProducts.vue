@@ -14,7 +14,8 @@
         </div>
     </div>
     <div class="loading" v-else>
-      <img clas="responsive-image" src="../assets/images/loading.gif" alt="loading image"/>
+      <img v-if="displayLoadingImage" clas="responsive-image" src="../assets/images/loading.gif" alt="loading image"/>
+      <h3 class="no-products-available" v-else>No Products are available!</h3>
     </div>
 
 
@@ -30,10 +31,23 @@ export default {
     SingleProductCard,
   },
   data() {
-    return {};
+    return {
+      displayLoadingImage: true,
+    };
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+  },
+  watch:{
+    products: function (){
+      if(this.products.length!=0){
+          this.displayLoadingImage = false;
+        }
+    },
+
+  },
+
+  methods: {
+  },
 };
 </script>
 
@@ -70,5 +84,9 @@ export default {
 .responsive-image {
   width: 100%;
   height: auto;
+}
+.no-products-available{
+  font-size: 200%;
+  color: red;
 }
 </style>

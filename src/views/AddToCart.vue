@@ -1,7 +1,7 @@
 <template>
     <div class="addtocart-">
       <NavBar :NavBarDetails="navbarDetails" :addToCartLength="getAddToCartProducts().length"></NavBar>
-      <h3 class="page-heading">{{prepareHeading()[0].name}}</h3>
+      <h3 class="page-heading">{{prepareHeading[0].name}}</h3>
       <div class="flex-container">
         <div class="inner-flex-container">
             <table class="customers">
@@ -44,10 +44,12 @@
       
       return JSON.parse(`[${addtoCartProductsSTR}]`);
     },
-    prepareHeading(){
+  },
+  computed: {
+        prepareHeading(){
           return this.navbarDetails.navbars.filter(eachNavbar => eachNavbar.active);
         },
-  },
+    },
   }
 </script>
 

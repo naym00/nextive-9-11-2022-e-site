@@ -1,7 +1,7 @@
 <template>
     <div class="womencollection">
       <NavBar :NavBarDetails="navbarDetails" :addToCartLength="getAddToCartProducts().length" v-on:getRating="getRating($event)" v-on:getLowHighPrice="getLowHighPrice($event)"></NavBar>
-      <h3 class="page-heading">{{prepareHeading()[0].name}}</h3>
+      <h3 class="page-heading">{{prepareHeading[0].name}}</h3>
       <HomePage :lowHighPrice="lowHighPrice" :lowHighRating="lowHighRating" :category="category"></HomePage>
     </div>
 </template>
@@ -18,13 +18,11 @@
     },
     data(){
       return {
-        lowHighPrice: [0, 1000],
-        lowHighRating: [0, 5],
+        lowHighPrice: [],
+        lowHighRating: [],
         category: "women's clothing",
         navbarDetails: JSON.parse(JSON.stringify(navBarForWomenCollection)),
       }
-    },
-    mounted(){
     },
     methods: {
       getAddToCartProducts(){
@@ -42,10 +40,12 @@
         this.lowHighRating = [...(rating.split("-")).map(Number)];
       }
     },
-    prepareHeading(){
+  },
+  computed: {
+        prepareHeading(){
           return this.navbarDetails.navbars.filter(eachNavbar => eachNavbar.active);
         },
-  },
+    },
     
   }
 </script>

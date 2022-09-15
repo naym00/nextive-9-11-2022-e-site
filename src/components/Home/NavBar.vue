@@ -19,7 +19,16 @@
               </div>
             </div>
           </a>
-          <div class="website-navbar" v-html="prepareAnchorTags"></div>
+          <!--<div class="website-navbar" v-html="prepareAnchorTags"></div>-->
+          <!--Search Bar-->
+          <div class="website-navbar">
+            <div class="for-website-navbar" v-html="prepareAnchorTags"></div>
+            <div class="for-website-search-box">
+              <button class="btn-search"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></button>
+              <input type="text" class="input-search" placeholder="Type to Search...">
+            </div>
+          </div>
+          <!--Search Bar-->
         </div>
         <div v-if="NavBarDetails.popupVisibilityForPriceRange" class="container-center-right">
           <div class="shopping-cart">
@@ -225,12 +234,90 @@ export default {
 .inner-website-name div p {
   font-size: 150%;
 }
+/*
 .website-navbar {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80%;
+  background-color: #0086ae;
 }
+*/
+.website-navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+.for-website-navbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Search Bar Design */
+.for-website-search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+.input-search{
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+  background-color:darkgrey;
+  padding-right: 40px;
+  color:black;
+}
+.input-search::placeholder{
+  color:black;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search{
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color:black ;
+  background-color:transparent;
+  pointer-events: painted;  
+}
+.btn-search:focus ~ .input-search{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+.input-search:focus{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+/* Search Bar Design */
+
 .navbar-a div a:hover{
   color: #0086ae;
   text-decoration: underline;

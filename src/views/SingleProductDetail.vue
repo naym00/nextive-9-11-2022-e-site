@@ -93,10 +93,10 @@ export default {
     },
     methods: {
         getAddToCartProducts(){
-      let addtoCartProductsSTR = window.localStorage.getItem('ProductsAddToCart');
+            let addtoCartProductsSTR = window.localStorage.getItem('ProductsAddToCart');
       
-      return JSON.parse(`[${addtoCartProductsSTR}]`);
-    },
+            return JSON.parse(`[${addtoCartProductsSTR}]`);
+        },
         calculateDiscountedProductPrice(){
             return (((100-this.product.discount)*this.product.price)/100).toFixed(2);
         },
@@ -137,18 +137,49 @@ export default {
 
                     let previousProductsAddToCart = window.localStorage.getItem('ProductsAddToCart');
                     if(previousProductsAddToCart == null || previousProductsAddToCart == ""){
-                        let objStr = JSON.stringify([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize]);
+                        let objStr = JSON.stringify([this.product.title, this.product.image, [this.quantity], [this.totalPrice], [this.productSize]]);
                         window.localStorage.setItem('ProductsAddToCart', `${objStr}`);
                     }
                     else{
-                        let objStr = JSON.stringify([this.product.title, this.product.image, this.quantity, this.totalPrice, this.productSize]);
-                        window.localStorage.setItem('ProductsAddToCart', `${previousProductsAddToCart}, ${objStr}`);
+                        let existingProductList = this.getAddToCartProducts();
+                        
+                        let index = 0;
+                        for(index; index<existingProductList.length; index+=1){
+                            if(existingProductList[index][0]==this.product.title && existingProductList[index][1]==this.product.image){
+                                break;
+                            }
+                        }
+                        if(index != existingProductList.length){
+                            let productSizeArray = existingProductList[index][4].filter((productSize, productSizeIndex) => {
+                                if(productSize == this.productSize){
+                                    let newTotalPrice = (parseFloat(existingProductList[index][3][productSizeIndex]) + parseFloat(this.totalPrice)).toFixed(2).toString();
+                                    existingProductList[index][3][productSizeIndex] = newTotalPrice;
+                                    let newQuantity = existingProductList[index][2][productSizeIndex] + this.quantity;
+                                    existingProductList[index][2][productSizeIndex] = newQuantity;
+                                    return productSize;
+                                }
+                            });
+                            if(!productSizeArray.length){
+                                existingProductList[index][2].push(this.quantity);
+                                existingProductList[index][3].push(this.totalPrice);
+                                existingProductList[index][4].push(this.productSize);
+                            }
+                            let existingProductListSTR = JSON.stringify(existingProductList);
+                            window.localStorage.removeItem('ProductsAddToCart');
+                            window.localStorage.setItem('ProductsAddToCart', existingProductListSTR.substring(1, existingProductListSTR.length-1));
+                        }
+                        else{
+                            let objStr = JSON.stringify([this.product.title, this.product.image, [this.quantity], [this.totalPrice], [this.productSize]]);
+                            window.localStorage.setItem('ProductsAddToCart', `${previousProductsAddToCart}, ${objStr}`);
+                        }
+                        
+
                     }
 
                     this.$router.push({ name: 'home' });
                 }
             }
-        },
+        }
     },
     computed: {
         rating() {

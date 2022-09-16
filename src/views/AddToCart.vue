@@ -2,9 +2,10 @@
     <div class="addtocart-">
       <NavBar :NavBarDetails="navbarDetails" :addToCartLength="getAddToCartProducts().length"></NavBar>
       <h3 class="page-heading">{{prepareHeading[0].name}}</h3>
+
       <div v-if="getAddToCartProducts().length" class="flex-container">
         <div class="inner-flex-container">
-            <table class="customers">
+            <table class="products">
                 <tr>
                     <th>Image</th>
                     <th>Title</th>
@@ -16,15 +17,16 @@
                 <tr v-for="(product, index) in getAddToCartProducts()" :key="product[2]">
                     <td><img class="image" :src="product[1]" alt="product image"/></td>
                     <td><h1>{{product[0]}}</h1></td>
-                    <td><h1>{{product[2]}}</h1></td>
-                    <td><h1>{{product[3]}}</h1></td>
-                    <td><h1>{{product[4]}}</h1></td>
+                    <td><h1>{{product[2].join('-')}}</h1></td>
+                    <td><h1>{{product[3].join('-')}}</h1></td>
+                    <td><h1>{{product[4].join('-')}}</h1></td>
                     <td><button @click="deleteProduct($event)" :value="index">Delete</button></td>
                     
                 </tr>
             </table>
         </div>
       </div>
+    
       <div v-else class="cart-div"> 
         <h3 class="">Your Cart is Empty!</h3>
       </div>
@@ -50,6 +52,7 @@
       
       return JSON.parse(`[${addtoCartProductsSTR}]`);
     },
+
     deleteProduct(index){
       let afterDeleteProduct = this.getAddToCartProducts().filter((product, productIndex) => {
         if(productIndex != parseInt(index.target.value)){
@@ -82,24 +85,24 @@
         align-items: center;
         width: 80%;
     }
-    .customers {
+    .products {
   border-collapse: collapse;
   width: 100%;
 }
 
-.customers td, .customers th {
+.products td, .products th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.customers tr:nth-child(even){background-color: #f2f2f2;}
+.products tr:nth-child(even){background-color: #f2f2f2;}
 
-.customers tr:hover {background-color: #ddd;}
+.products tr:hover {background-color: #ddd;}
 
-.customers th {
+.products th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #04AA6D;
   color: white;
 }

@@ -27,11 +27,20 @@
                     <div class="product-size">
                         <span class="product-size-span">SIZE:</span>
                         <div class="product-size-type">
+                            <input type="radio" name="productSize" v-model="productSize" value="S">S
+                            <input type="radio" name="productSize" v-model="productSize" value="M">M
+                            <input type="radio" name="productSize" v-model="productSize" value="L">L
+                            <input type="radio" name="productSize" v-model="productSize" value="XL">XL
+                            <input type="radio" name="productSize" v-model="productSize" value="XXL">XXL
+
+                        
+                            <!--
                             <button v-on:click="getProductSize($event)" type="button" value="S">S</button>
                             <button v-on:click="getProductSize($event)" type="button" value="M">M</button>
                             <button v-on:click="getProductSize($event)" type="button" value="L">L</button>
                             <button v-on:click="getProductSize($event)" type="button" value="XL">XL</button>
                             <button v-on:click="getProductSize($event)" type="button" value="XXL">XXL</button>
+                            -->
                         </div>
                     </div>
                     <div class="count-product-calculate-price">
@@ -46,7 +55,7 @@
                                 <button v-on:click="incrementProductCount" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/></svg></button>
                             </div>
                         </div>
-                        <div v-if="is_product_size_selected" class="calculate-price">
+                        <div v-if="Boolean(productSize.length)" class="calculate-price">
                             <span>৳ {{totalPrice}}</span>
                         </div>
                     </div>
@@ -87,7 +96,6 @@ export default {
             productSize: '',
             quantity: 1,
             totalPrice: this.calculateDiscountedProductPrice(),
-            is_product_size_selected: false,
             navbarDetails: JSON.parse(JSON.stringify(navBarForSingleProductDetail)),
         }
     },
@@ -100,20 +108,15 @@ export default {
         calculateDiscountedProductPrice(){
             return (((100-this.product.discount)*this.product.price)/100).toFixed(2);
         },
-        getProductSize(size){
-            this.productSize = size.target.value;
-            this.is_product_size_selected = true;
-
-        },
         incrementProductCount(){
-            if(this.is_product_size_selected){
+            if(this.productSize.length){
                 this.quantity++;
                 this.calculatePrice();
             }
 
         },
         decrementProductCount(){
-            if(this.is_product_size_selected){
+            if(this.productSize.length){
                 if(this.quantity>1){
                     this.quantity--;
                     this.calculatePrice();
@@ -128,7 +131,7 @@ export default {
             this.totalPrice = (this.calculateDiscountedProductPrice()*this.quantity).toFixed(2);
         },
         addToCart(){
-            if(!this.is_product_size_selected){
+            if(!this.productSize.length){
                 alert("Product Size is missing!");
             }
             else{
@@ -316,23 +319,15 @@ export default {
         font-weight: bold;
     }
     .product-size-type{
+        display: flex;
+        align-items: center;
         width: 80%;
     }
-    .product-size-type button{
-        text-decoration: none;
-        border: 1px solid rgb(141, 117, 117);
-        border-radius: 50%;
-        background: none;
+    .product-size-type input{
         cursor: pointer;
-        height: 50px;
-        width: 50px;
+        height: 30px;
+        width: 30px;
         margin: 0 10px;
-    }
-    .product-size-type button:hover{
-        border: 1px solid black;
-    }
-    .product-size-type button:focus {
-    background-color:darkgray;
     }
     .count-product-calculate-price{
         display: flex;

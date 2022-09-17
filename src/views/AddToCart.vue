@@ -83,7 +83,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 80%;
+        width: 100%;
     }
     .products {
   border-collapse: collapse;
